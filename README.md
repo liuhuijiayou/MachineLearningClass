@@ -233,7 +233,7 @@
 
 ## 实验结果 ##
 
--	分类器说明和每个分类的准确率`precision`，召回率`recall`和F1分数`f1-score`。
+-	分类器说明和每个分类的准确率`precision`，召回率`recall`，F1分数`f1-score`和各类别参与训练的样本数。
 
 	![](https://i.imgur.com/PdUhY7M.png)
 
