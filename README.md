@@ -147,7 +147,7 @@
 	![](https://i.imgur.com/PFyjMn9.png)
 
 1.	代码文件`exper1.txt`中实现了以下步骤：
-	1. 导入试验依赖模块
+	1. 导入实验依赖模块
 	   ```python
 	   #导入matplotlib绘图工具包
 	   import matplotlib.pyplot as plt
@@ -349,9 +349,28 @@ plt.show()
 
 1.	打开编译环境。如实验一打开Jupyter Notebook，新建`New`->`Python3`交互窗口。
 
-2. 代码文件`exper2.txt`中实现了以下步骤，详见**代码注释**：
+2. 代码文件`exper2.txt`中实现了以下步骤：
 
-	1.	载入示例数据集。载入Scikit-learn自带数据集手写数字识别集（Handwritten Digits Data Set）。
+	1. 导入实验依赖模块
+	
+	   ```python
+	   from time import time
+	   import numpy as np
+	   import matplotlib.pyplot as plt
+	   from sklearn import metrics
+	   from sklearn.cluster import KMeans
+	   from sklearn.datasets import load_digits
+	   from sklearn.decomposition import PCA
+	   from sklearn.preprocessing import scale
+	   ```
+	
+	1. 载入示例数据集。载入Scikit-learn自带数据集手写数字识别集（Handwritten Digits Data Set）。
+	
+	   ```python
+	   
+	   ```
+	
+	   
 	
 	1.	数据预处理。使用`numpy`将图片展开成向量。
 	
