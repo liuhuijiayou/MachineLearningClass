@@ -148,13 +148,17 @@
 
 1.	代码文件`exper1.txt`中实现了以下步骤，详见**代码注释**：
 
-	1.
-	```python
-        #jiushi
-	#gsgsdg
-	import pandas as pd
-	```
-   
+	1.	导入试验依赖模块
+		```python
+        	#jiushi
+		#gsgsdg
+		import pandas as pd
+		```
+   	1.	导入试验依赖模块
+		```python
+        	#jiushi
+		#gsgsdg
+		import pandas as pd
 
 ## 实验结果 ##
 
