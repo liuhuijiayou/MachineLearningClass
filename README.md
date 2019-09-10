@@ -148,14 +148,20 @@
 
 1.	代码文件`exper1.txt`中实现了以下步骤，详见**代码注释**：
 
-	1.导入试验依赖模块
-
+1.	```python
+#jiushi
+	#gsgsdg
+import pandas as pd
+	```
+   
+	
+   
 	```python
    #导入matplotlib绘图工具包
 	import matplotlib.pyplot as plt
-   #Import datasets, classifiers and performance metrics
+	#Import datasets, classifiers and performance metrics
 	from sklearn import datasets, svm, metrics
-   ```
+	```
 	
 	2.
 	
