@@ -148,28 +148,18 @@
 
 1.	代码文件`exper1.txt`中实现了以下步骤，详见**代码注释**：
 
-	1. 导入试验依赖模块。
+	1.导入试验依赖模块
 
-	   ```python
+	```python
    #导入matplotlib绘图工具包
-	   import matplotlib.pyplot as plt
+	import matplotlib.pyplot as plt
    #Import datasets, classifiers and performance metrics
-	   from sklearn import datasets, svm, metrics
+	from sklearn import datasets, svm, metrics
    ```
 	
-	1. 载入示例数据集。载入Scikit-learn自带数据集手写数字识别集（Handwritten Digits Data Set）
+	2.
 	
-	1. 查看数据集。使用`matplotlib`显示数据集图片。
-	
-	1. 数据预处理。使用`numpy`将图片展开成向量。
-	
-	1. 构建分类器模型。使用Scikit-learn中的分类器`SVM`。
-	
-	1. 训练分类器模型。使用一半数据集进行模型的训练。
-	
-	1. 使用训练好的分类器模型预测另一半数据集。
-	
-	1.	检查分类器的预测效果。使用Scikit-learn自带`metrics`检查预测准确率、召回率及混淆矩阵（Confusion Matrix）等。
+	3.
 
 ## 实验结果 ##
 
