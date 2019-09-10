@@ -150,15 +150,45 @@
 
 	1.	导入试验依赖模块
 		```python
-        #jiushi
-		#gsgsdg
-		import pandas as pd
+        #导入matplotlib绘图工具包
+	   	import matplotlib.pyplot as plt
+		# Import datasets, classifiers and performance metrics
+       		from sklearn import datasets, svm, metrics
 		```
-   	1.	导入试验依赖模块
+   	1.	载入示例数据集。载入Scikit-learn自带数据集手写数字识别集（Handwritten Digits Data Set）
 		```python
-        #jiushi
-		#gsgsdg
-		import pandas as pd
+        # The digits dataset
+	  	# 加载数据集
+	   	digits = datasets.load_digits()
+		```
+	1.	查看数据集。使用`matplotlib`显示数据集图片
+		```python
+        # The data that we are interested in is made of 8x8 images of digits, let's
+	   	# have a look at the first 4 images, stored in the `images` attribute of the
+	  	# dataset.  If we were working from image files, we could load them using
+	  	# matplotlib.pyplot.imread.  Note that each image must have the same size. For these
+	  	# images, we know which digit they represent: it is given in the 'target' of
+	  	# the dataset.
+	  	# 查看数据集前4张图片
+	  	images_and_labels = list(zip(digits.images, digits.target))
+	   	for index, (image, label) in enumerate(images_and_labels[:4]):
+	     	plt.subplot(2, 4, index + 1)
+	        plt.axis('off')
+	        plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
+	        plt.title('Training: %i' % label)
+		```
+	1.	载入示例数据集。载入Scikit-learn自带数据集手写数字识别集（Handwritten Digits Data Set）
+		```python
+        # The digits dataset
+	  	# 加载数据集
+	   	digits = datasets.load_digits()
+		```
+	1.	载入示例数据集。载入Scikit-learn自带数据集手写数字识别集（Handwritten Digits Data Set）
+		```python
+        # The digits dataset
+	  	# 加载数据集
+	   	digits = datasets.load_digits()
+		```
 
 ## 实验结果 ##
 
