@@ -149,10 +149,10 @@
 1.	代码文件`exper1.txt`中实现了以下步骤：
 	1. 导入试验依赖模块
 	   ```python
-    	#导入matplotlib绘图工具包
-    	import matplotlib.pyplot as plt
-		# Import datasets, classifiers and performance metrics
-       from sklearn import datasets, svm, metrics
+	   #导入matplotlib绘图工具包
+	   import matplotlib.pyplot as plt
+	   # Import datasets, classifiers and performance metrics
+	   from sklearn import datasets, svm, metrics
 	   ```
 	1. 载入示例数据集。载入Scikit-learn自带数据集手写数字识别集（Handwritten Digits Data Set）
 	
