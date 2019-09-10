@@ -150,13 +150,13 @@
 
 	1.	导入试验依赖模块
 		```python
-        	#jiushi
+        #jiushi
 		#gsgsdg
 		import pandas as pd
 		```
    	1.	导入试验依赖模块
 		```python
-        	#jiushi
+        #jiushi
 		#gsgsdg
 		import pandas as pd
 
