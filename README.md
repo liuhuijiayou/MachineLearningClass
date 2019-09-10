@@ -5,17 +5,16 @@
 -	[准备工作](#准备工作)
 
 -	[实验一、Python机器学习入门：有监督学习](#实验一python机器学习入门有监督学习)
-
-	-	[实验目标](#实验目标)
-
-	-	[实验器材及准备](#实验器材及准备)
-
-	-	[实验内容与步骤](#实验内容与步骤)
-
-	-	[实验结果](#实验结果)
-
-	-	[课后习题](#课后习题)
-
+-	[实验目标](#实验目标)
+	
+-	[实验器材及准备](#实验器材及准备)
+	
+-	[实验内容与步骤](#实验内容与步骤)
+	
+-	[实验结果](#实验结果)
+	
+-	[课后习题](#课后习题)
+	
 -	[实验二、Python机器学习入门：无监督学习](#实验二python机器学习入门无监督学习)
 
 	-	[实验目标](#实验目标-1)
@@ -148,19 +147,98 @@
 
 1.	代码文件`exper1.txt`中实现了以下步骤，详见**代码注释**：
 
-	1.	载入示例数据集。载入Scikit-learn自带数据集手写数字识别集（Handwritten Digits Data Set）。
+	1. 导入试验依赖模块
 
-	1.	查看数据集。使用`matplotlib`显示数据集图片。
-
-	1.	数据预处理。使用`numpy`将图片展开成向量。
-
-	1.	学习和预测。使用Scikit-learn中的分类器`SVM`，在一半数据集上训练，另一半数据集上做出预测。
-
-	1.	检查预测效果。使用Scikit-learn自带`metrics`检查预测准确率、召回率及混淆矩阵（Confusion Matrix）等。
+	   ```python
+      #导入matplotlib绘图工具包
+	   import matplotlib.pyplot as plt
+   # Import datasets, classifiers and performance metrics
+	   from sklearn import datasets, svm, metrics
+   ```
+	
+	1. 载入示例数据集。载入Scikit-learn自带数据集手写数字识别集（Handwritten Digits Data Set）。
+	
+	   ```python
+	   # 加载手写体识别数据集
+	   digits = datasets.load_digits()
+	   ```
+	
+	1. 查看数据集。使用`matplotlib`显示数据集图片。
+	
+	   ```python
+	   # The data that we are interested in is made of 8x8 images of digits, let's
+	   # have a look at the first 4 images, stored in the `images` attribute of the
+	   # dataset.  If we were working from image files, we could load them using
+	   # matplotlib.pyplot.imread.  Note that each image must have the same size. For these
+	   # images, we know which digit they represent: it is given in the 'target' of
+	   # the dataset.
+	   # 查看数据集前4张图片
+	   images_and_labels = list(zip(digits.images, digits.target))
+	   for index, (image, label) in enumerate(images_and_labels[:4]):
+	       plt.subplot(2, 4, index + 1)
+	       plt.axis('off')
+	       plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
+	       plt.title('Training: %i' % label)
+	   ```
+	
+	1. 数据预处理。使用`numpy`将图片展开成向量。
+	
+	   ```python
+	   # To apply a classifier on this data, we need to flatten the image, to
+	   # turn the data in a (samples, feature) matrix:
+	   # 数据预处理：将数据集展开成向量
+	   n_samples = len(digits.images)
+	   data = digits.images.reshape((n_samples, -1))
+	   ```
+	
+	1. 构建分类器模型。使用Scikit-learn中的分类器`SVM`。
+	
+	   ```python
+	   # Create a classifier: a support vector classifier
+	   # 构建分类器SVM
+	   classifier = svm.SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+	     degree=3, gamma=0.001, kernel='rbf',
+	     max_iter=-1, probability=False, random_state=None, shrinking=True,
+	     tol=0.001, verbose=False)
+	   ```
+	
+	1. 训练分类器模型。使用一半数据集进行模型的训练。
+	
+	   ```python
+	   # We learn the digits on the first half of the digits
+	   # 训练分类器
+	   classifier.fit(data[:n_samples // 2], digits.target[:n_samples // 2])
+	   ```
+	
+	1. 使用训练好的分类器模型预测另一半数据集。
+	
+	   ```python
+	   # Now predict the value of the digit on the second half:
+	   # 测试分类效果
+	   expected = digits.target[n_samples // 2:]
+	   predicted = classifier.predict(data[n_samples // 2:])
+	   ```
+	
+	1. 检查分类器的预测效果。使用Scikit-learn自带`metrics`检查预测准确率、召回率及混淆矩阵（Confusion Matrix）等。
+	
+	   ```python
+	   print("Classification report for classifier %s:\n%s\n"
+	         % (classifier, metrics.classification_report(expected, predicted)))
+	   print("Confusion matrix:\n%s" % metrics.confusion_matrix(expected, predicted))
+	   
+	   images_and_predictions = list(zip(digits.images[n_samples // 2:], predicted))
+	   for index, (image, prediction) in enumerate(images_and_predictions[:4]):
+	       plt.subplot(2, 4, index + 5)
+	       plt.axis('off')
+	       plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
+	       plt.title('Prediction: %i' % prediction)
+	   
+	   plt.show()
+	   ```
 
 ## 实验结果 ##
 
--	分类器说明和每个分类的准确率`precision`，召回率`recall`和F1分数`f1-score`。
+-	分类器说明和每个分类的准确率`precision`，召回率`recall`，F1分数`f1-score`和各类别参与训练的样本数。
 
 	![](https://i.imgur.com/PdUhY7M.png)
 
