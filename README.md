@@ -633,24 +633,106 @@ plt.show()
 
 1.	打开编译环境。如实验一打开Jupyter Notebook，新建`New`->`Python3`交互窗口。
 
-1.	代码文件`exper3.txt`中实现了以下步骤，详见**代码注释**：
+1.	代码文件`exper3.txt`中实现了以下步骤：
 
-	-	首先粘贴`part1`部分代码，运行`part1`部分代码（可能要运行几分钟之后才有结果输出，耐心等待一下）：
+	1. 导入试验所需模块
 	
-		1.	载入示例数据集。载入Tensorflow自带数据集手写数字识别集（MNIST Data）。
+	   ```python
+	   from __future__ import absolute_import
+	   from __future__ import division
+	   from __future__ import print_function
+	   
+	   import argparse
+	   import sys
+	   
+	   from tensorflow.examples.tutorials.mnist import input_data
+	   import matplotlib.pyplot as plt
+	   import tensorflow as tf
+	   ```
 	
-		1.	构建神经网络。利用Tensorflow构建简单神经网络，定义损失函数和优化器。
+	1. 载入示例数据集。载入Tensorflow自带数据集手写数字识别集（MNIST Data）。
 	
-		1.	学习和预测。在给定的训练样本上运行以上神经网络，观察交叉熵（Cross Entropy）误差`error`值的变化，并在待测样本上做出预测。 
+	   ```python
+	   # 载入数据
+	   mnist = input_data.read_data_sets("/tmp/tensorflow/mnist/input_data", one_hot=True)
+	   ```
 	
-		1.	检查预测效果。定义准确率`accuracy`计算方式，检查预测准确率。
+	1. 构建神经网络。利用Tensorflow构建简单神经网络。
 	
-	-	在下一个输入框中，运行`part2`部分代码，查看预测结果和图片：
+	   ```python
+	   # 构建单层神经网络
+	   x = tf.placeholder(tf.float32, [None, 784])
+	   W = tf.Variable(tf.zeros([784, 10]))
+	   b = tf.Variable(tf.zeros([10]))
+	   y = tf.matmul(x, W) + b
+	   ```
 	
-		1.	选择图片并进行预测。选择一张图片，用训练好的模型对新的图片进行预测。
+	1. 构建损失函数和优化器
 	
-		1.	输出图片及预测结果。使用`matplotlib`可视化图及结果。
-
+	   ```python
+	   y_ = tf.placeholder(tf.float32, [None, 10])
+	   
+	   # The raw formulation of cross-entropy,
+	   #
+	   #   tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(tf.nn.softmax(y)),
+	   #                                 reduction_indices=[1]))
+	   #
+	   # can be numerically unstable.
+	   #
+	   # So here we use tf.nn.softmax_cross_entropy_with_logits on the raw
+	   # outputs of 'y', and then average across the batch.
+	   # 构建损失函数
+	   cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y))
+	   # 构建优化器，注意learning_rate
+	   train_step = tf.train.GradientDescentOptimizer(learning_rate=0.1).minimize(cross_entropy)
+	   ```
+	
+	1. 构建TensorFlow会话并初始化变量。
+	
+	   ```python
+	   sess = tf.InteractiveSession()
+	   tf.global_variables_initializer().run()
+	   ```
+	
+	1. 进行模型的训练，在给定的训练样本上运行以上神经网络，每隔100轮打印一次训练情况，观察交叉熵（Cross Entropy）误差`error`值的变化。
+	
+	   ```python
+	   # 训练模型:range内迭代次数
+	   for i in range(1000):
+	       batch_xs, batch_ys = mnist.train.next_batch(100)
+	       sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
+	       if i%100==0:
+	           print("cross_entropy error:",sess.run(cross_entropy, feed_dict={x: batch_xs, y_: batch_ys}))
+	   ```
+	
+	1. 检查模型预测效果。定义准确率`accuracy`计算方式，检查模型预测准确率。
+	
+	   ```python
+	   # 测试训练好的模型
+	   correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
+	   accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+	   print("test accuracy: ",sess.run(accuracy, feed_dict={x: mnist.test.images,
+	   				  y_: mnist.test.labels}))
+	   ```
+	
+	1. 选择图片进行测试，选择一张图片，用训练好的模型对新的图片进行预测。
+	
+	   ```python
+	   # part2 ：选择图片测试
+	   # 第几张图片
+	   p = 0
+	   s = sess.run(y,feed_dict={x: mnist.test.images[p].reshape(1,784)})
+	   ```
+	
+	1. 打印模型预测结果，并可视化测试图片。
+	
+	   ```python
+	   print("Prediction : ",sess.run(tf.argmax(s, 1)))
+	   
+	   #显示图片
+	   plt.imshow(mnist.test.images[p].reshape(28,28), cmap=plt.cm.gray_r, interpolation='nearest')
+	   plt.show()
+	   ```
 ## 实验结果 ##
 
 -	随着迭代的进行，神经网络在数据集上的交叉熵（Cross Entropy）误差`error`值越来越小，代表正在慢慢拟合训练数据，最后在测试集上的测试准确率`accuracy`为`91.02%`。
