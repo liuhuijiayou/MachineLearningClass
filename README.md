@@ -371,7 +371,7 @@ plt.show()
 	   np.random.seed(42)
 	   # 加载数据集
 	   digits = load_digits()
-	   data = scale(digits.dta)
+	   data = scale(digits.data)
 	   ```
 	
 	1. 数据预处理。使用`numpy`将图片展开成向量。
