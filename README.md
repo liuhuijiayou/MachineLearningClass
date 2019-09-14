@@ -387,10 +387,8 @@ plt.show()
 	   sample_size = 300
 	   print("n_digits: %d, \t n_samples %d, \t n_features %d"
 	         % (n_digits, n_samples, n_features))
-	   print(82 * '_')
-	   print('init\t\ttime\tinertia\thomo\tcompl\tv-meas\tARI\tAMI\tsilhouette')
 	   ```
-	
+	   
 	1. 定义bench_k_means函数用以完成模型的训练及打印模型的聚类评估指标。
 	
 	   ```python
@@ -413,6 +411,8 @@ plt.show()
 	1. 分别构建三种不同的K-means分类器
 	
 	   ```python
+	   print(82 * '_')
+	   print('init\t\ttime\tinertia\thomo\tcompl\tv-meas\tARI\tAMI\tsilhouette')
 	   # 构建K-means分类器1: 初始化中心点为k-means++，传入以上函数				 
 	   
 	   bench_k_means(KMeans(init='k-means++', n_clusters=n_digits, n_init=10),
