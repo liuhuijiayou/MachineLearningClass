@@ -640,7 +640,7 @@ plt.show()
 
 1.	代码文件`exper3.txt`中实现了以下步骤：
 
-	1. 导入试验所需模块
+	1. 导入实验所需模块
 	
 	   ```python
 	   from __future__ import absolute_import
@@ -670,13 +670,12 @@ plt.show()
 	   W = tf.Variable(tf.zeros([784, 10]))
 	   b = tf.Variable(tf.zeros([10]))
 	   y = tf.matmul(x, W) + b
+	   y_ = tf.placeholder(tf.float32, [None, 10])
 	   ```
 	
 	1. 构建损失函数和优化器
 	
 	   ```python
-	   y_ = tf.placeholder(tf.float32, [None, 10])
-	   
 	   # The raw formulation of cross-entropy,
 	   #
 	   #   tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(tf.nn.softmax(y)),
@@ -691,7 +690,7 @@ plt.show()
 	   # 构建优化器，注意learning_rate
 	   train_step = tf.train.GradientDescentOptimizer(learning_rate=0.1).minimize(cross_entropy)
 	   ```
-	
+	   
 	1. 构建TensorFlow会话并初始化变量。
 	
 	   ```python
