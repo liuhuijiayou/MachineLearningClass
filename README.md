@@ -373,7 +373,7 @@ plt.show()
 	   digits = load_digits()
 	   ```
 	   
-	1. 数据预处理。使用`numpy`将图片展开成向量。
+	1. 数据预处理。标准化数据，并获取数据集相关信息。
 	
 	   ```python
 	   data = scale(digits.data)
@@ -408,7 +408,7 @@ plt.show()
 	                                         sample_size=sample_size)))
 	   ```
 	
-	1. 分别构建三种不同的K-means分类器
+	1. 分别构建三种不同的K-means聚类器
 	
 	   ```python
 	   print(82 * '_')
