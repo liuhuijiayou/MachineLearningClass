@@ -371,12 +371,12 @@ plt.show()
 	   np.random.seed(42)
 	   # 加载数据集
 	   digits = load_digits()
-	   data = scale(digits.data)
 	   ```
-	
+	   
 	1. 数据预处理。使用`numpy`将图片展开成向量。
 	
 	   ```python
+	   data = scale(digits.data)
 	   # 解析数据集
 	   # 数据集包含10个分类（手写数字1-10），1797个样本，特征维度为64维；
 	   # 样本数，特征维度
