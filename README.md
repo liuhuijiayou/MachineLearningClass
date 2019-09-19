@@ -958,7 +958,7 @@ plt.show()
 
 	通过网络下载或者U盘等移动存储设备把照片样本复制`Copy`至bupt用户主目录`/home/bupt`下的`training-images`文件夹中对应的各文件目录`person1`、`person2`、`person3`下（此时文件夹名应该**已经**替换为你自定义的名称了，并且每一个文件夹都<font color=#A52A2A>**必须**</font>要拷入图片文件使其<font color=#A52A2A>**不为空**</font>，如果不小心多建了不用的文件夹请<font color=#A52A2A>**务必`Delete`删除**</font>）。
 	
-	![](https://i.imgur.com/WJRBj5Y.png)
+	![](images/4-5.png)
 
 1.	<font color=#A52A2A>**注意事项**</font>【<font color=#A52A2A>`！！！重要！！！`</font>】：
 
@@ -986,7 +986,7 @@ plt.show()
 
 1.	运行以上命令之后会显示如下类似图片结果：
 
-	![](https://i.imgur.com/3Lg1NTx.jpg)
+	![](images/4-6.png)
 
 1.	在Terminal命令行窗口中<font color=#A52A2A>**键入`Enter`回车按钮**</font>继续。
 
@@ -1004,7 +1004,7 @@ plt.show()
 
 1.	运行以上命令之后会显示如下类似图片结果：
 
-	![](https://i.imgur.com/MQq0N4u.jpg)
+	![](images/4-7.png)
 
 1.	在Terminal命令行窗口中<font color=#A52A2A>**键入`Enter`回车按钮**</font>继续。
 
@@ -1024,9 +1024,9 @@ plt.show()
 	cp /root/openface/aligned_face_0.jpg /home/bupt/
 	```
 
-	然后在主目录**双击**打开![](https://i.imgur.com/4Vn1zKX.png)查看：
+	然后在主目录**双击**打开![](images/4-8.png)查看：
 
-	![](https://i.imgur.com/1Y9wwsz.png)
+	![](images/4-9.png)
 
 ----------
 
@@ -1070,9 +1070,9 @@ plt.show()
 
 1.	运行以上命令之后可在`/home/bupt/aligned-images`目录下找到仿射变换后的图片文件：
 
-	![](https://i.imgur.com/h08HjNS.png)
+	![](images/4-10.png)
 
-	![](https://i.imgur.com/jTfoN0m.png)
+	![](images/4-11.png)
 
 #### 运行`main.lua`获取`128`维面部特征向量表示文件 ####
 
@@ -1108,6 +1108,6 @@ plt.show()
 
 1.	运行以上命令之后会在`Terminal`命令窗口中显示类似如下识别结果：
 
-	![](https://i.imgur.com/MpfSDla.png)
+	![](images/4-12.png)
 
 ----------
