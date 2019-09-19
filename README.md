@@ -952,7 +952,7 @@ plt.show()
 	mkdir -vm 777 /home/bupt/training-images/person3
 	```
 
-	![](https://i.imgur.com/iXEOeL6.png)
+	![](images/4-4.png)
 
 1.	拷贝需要作为训练集的人脸照片样本至相应目录：
 
